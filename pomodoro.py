@@ -47,14 +47,13 @@ class Timer:
             pomodoro_time.set(convert_time_to_string(self._pomodoro_time_raw))
             self._timer_id = root.after(1000, self.decrement_pomodoro)
         elif self._pomodoro_count > CONST_POMODORO_COUNT:
-            # The last pomodoro has completed, so we're ending it
+            # The last pomodoro has completed, so we're finishing up
             root.after_cancel(self._timer_id)
             pomodoro_time.set("Pomodoro Over!")
             self._timer_started = False
             self._pomodoro_time_raw = CONST_POMODORO_TIME
             notification.notify(title="Pomodoro Timer", message=f"Time for a long break!")
         else:
-            # We should have logic switching between pause/pomodoro and resetting the clock here.
             if self._is_in_break:
                 # Going to next pomodoro
                 self._is_in_break = False
