@@ -61,14 +61,16 @@ class Timer:
                 self._pomodoro_count += 1
                 pomodoro_time.set(convert_time_to_string(self._pomodoro_time_raw))
                 self._timer_id = root.after(1000, self.decrement_pomodoro)
-                notification.notify(title="Pomodoro Timer", message=f"Pomodoro #{self._pomodoro_count}, break has ended!")
+                notification.notify(title="Pomodoro Timer",
+                                    message=f"Pomodoro #{self._pomodoro_count}, break has ended!")
             else:
                 # Going to next break
                 self._is_in_break = True
                 self._pomodoro_time_raw = CONST_BREAK_TIME
                 pomodoro_time.set(convert_time_to_string(self._pomodoro_time_raw))
                 self._timer_id = root.after(1000, self.decrement_pomodoro)
-                notification.notify(title="Pomodoro Timer", message=f"Pomodoro #{self._pomodoro_count}, break has started!")
+                notification.notify(title="Pomodoro Timer",
+                                    message=f"Pomodoro #{self._pomodoro_count}, break has started!")
 
 
 root = Tk()
